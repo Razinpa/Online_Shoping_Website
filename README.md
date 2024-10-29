@@ -1,4 +1,4 @@
-#E-commerce Web Application
+# E-commerce-Web-Application
 
 This is a Python Django-based e-commerce web application built as an assessment for the Python Developer position at Noviindus Technologies. The project includes user registration and login, cart functionality, item management, and CRUD operations.
 
