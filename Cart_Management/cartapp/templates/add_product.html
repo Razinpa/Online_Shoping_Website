@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Product</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            display: flex; 
+            justify-content: space-between;
+            background-color: #333;
+            padding: 10px;
+        }
+        .navbar a {
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .navbar a:hover {
+            background-color: #575757;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        .form-box {
+            border: 1px solid #000;
+            padding: 20px;
+            width: 400px;
+            border-radius: 8px;
+            box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="{% url 'dashboard' %}">Home</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+
+    <div class="container">
+        <div class="form-box">
+            <h2>Add Product</h2>
+    <form action="{% url 'add_product' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+                <table align="center">
+                    <tr>
+                        <td><label for="name">Product Name:</label></td>
+                        <td><input type="text" id="name" name="name" value="{{ product.name }}" required></td>
+                    </tr>
+
+                    <tr><td colspan="2"><br></td></tr>
+
+                    <tr>
+                        <td><label for="price">Price:</label></td>
+                        <td><input type="number" id="price" name="price" value="{{ product.price }}" required></td>
+                    </tr>
+
+                    <tr><td colspan="2"><br></td></tr>
+
+                    <tr>
+                        <td><label for="image">Product Image:</label></td>
+                        <td><input type="file" id="image" name="image"></td>
+                    </tr>
+
+                    <tr><td colspan="2"><br></td></tr>
+
+                    <tr>
+                        <td colspan="2" align="center">
+                            <button type="submit">Submit</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+    
+</body>
+</html>
+

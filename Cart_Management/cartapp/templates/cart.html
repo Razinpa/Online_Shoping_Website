@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            display: flex; 
+            justify-content: space-between;
+            background-color: #333;
+            overflow: hidden;
+            padding: 10px;
+        }
+        .navbar a {
+            float: left;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .navbar a:hover {
+            background-color: #575757;
+            color: white;
+        }
+        .container {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body><center>
+
+    <div class="navbar">
+        <a href="{% url 'dashboard' %}">Home</a>
+        <a href="{% url 'logout' %}" >Logout</a>
+    </div>
+
+        <h2>Cart</h2>
+
+    {% if cart_items %}
+       
+            {% for item in cart_items %}
+            
+                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" width="80">
+                {{ item.product.name }} - Quantity: {{ item.quantity }} - Price: ${{ item.total_price }}
+                <form action="{% url 'remove_from_cart' item.id %}" method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit">Remove</button>
+                    <br><br>
+                </form>
+           
+            {% endfor %}
+        
+        <h3>Total Amount: ${{ total_amount }}</h3>
+
+    {% else %}
+        <p>Your cart is empty.</p>
+    {% endif %}
+
+</center>
+
+</body>
+</html>
